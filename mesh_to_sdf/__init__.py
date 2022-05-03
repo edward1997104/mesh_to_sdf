@@ -41,8 +41,9 @@ def mesh_to_sdf(mesh, query_points, surface_point_method='scan', sign_method='no
         raise ValueError('Unknown sign determination method: {:s}'.format(sign_method))
 
 
-def mesh_to_voxels(mesh, voxel_resolution=64, surface_point_method='scan', sign_method='normal', scan_count=100, scan_resolution=400, sample_point_count=10000000, normal_sample_count=11, pad=False, check_result=False, return_gradients=False):
-    mesh = scale_to_unit_cube(mesh)
+def mesh_to_voxels(mesh, voxel_resolution=64, surface_point_method='scan', sign_method='normal', scan_count=100, scan_resolution=400, sample_point_count=10000000, normal_sample_count=11, pad=False, check_result=False, return_gradients=False,
+                   scale_ratio = 0.9):
+    mesh = scale_to_unit_cube(mesh, scale_ratio =scale_ratio)
 
     surface_point_cloud = get_surface_point_cloud(mesh, surface_point_method, 3**0.5, scan_count, scan_resolution, sample_point_count, sign_method=='normal')
 
